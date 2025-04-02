@@ -1,7 +1,11 @@
 import express from 'express';
 import { whoopService } from '../services/whoopService.js';
+import { authenticateToken } from '../middleware/auth.js';
 
 const router = express.Router();
+
+// Apply authentication middleware to all routes
+router.use(authenticateToken);
 
 // Route to get user profile
 router.get('/profile', async (req, res, next) => {
